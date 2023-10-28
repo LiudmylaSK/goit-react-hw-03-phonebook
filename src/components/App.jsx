@@ -24,21 +24,23 @@ Notify.init({
 });
 
 export class App extends Component {
-  state = {
-    contacts: JSON.parse(localStorage.getItem('contacts')) || [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+ state = {
+    contacts: [
+      { name: 'Rosie Simpson', number: '459-12-56', id: 'id-1' },
+      { name: 'Hermione Kline', number: '443-89-12', id: 'id-2' },
+      { name: 'Eden Clements', number: '645-17-79', id: 'id-3' },
+      { name: 'Annie Copeland', number: '227-91-26', id: 'id-4' },
     ],
     filter: '',
   };
 
-
   componentDidMount() {
-  const savedContacts = JSON.parse(localStorage.getItem('contacts')) ?? [];
-  this.setState({ contacts: savedContacts });
-}
+    const savedContacts = JSON.parse(localStorage.getItem('contacts')) ?? [];
+this.setState({ contacts: savedContacts });
+
+  }
+
+ 
 
 
   componentDidUpdate(_, prevState) {
@@ -60,7 +62,7 @@ export class App extends Component {
       return Notify.info(`${name} is already in your contacts`);
     }
 
-     console.log(name, number);
+     
     const contact = {
       name,
       number,
